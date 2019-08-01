@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    APP
-    <el-button type="warning">警告按钮</el-button>
+    <!-- 指定loginCom组件 路由的出口 -->
+    <router-view></router-view>
   </div>
 </template>
 <script>
