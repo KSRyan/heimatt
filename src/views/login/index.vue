@@ -36,8 +36,8 @@ export default {
     }
     return {
       loginForm: {
-        mobile: '',
-        code: ''
+        mobile: '13911111111',
+        code: '246810'
       },
       loginRules: {
         mobile: [
@@ -55,7 +55,18 @@ export default {
     login () {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          console.log('success')
+          // console.log('success')
+          this.$https.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
+            .then(result => {
+              // console.log(result.data)
+              this.$router.push('/')
+            }).catch(() => {
+              this.$message({
+                showClose: true,
+                message: '手机号或验证码错误',
+                type: 'error'
+              })
+            })
         }
       })
     }
