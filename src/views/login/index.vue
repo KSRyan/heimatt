@@ -28,6 +28,8 @@
 </template>
 
 <script>
+// 导入数据存储模块
+import store from '@/store'
 export default {
   data () {
     const checkMobile = (rule, value, callback) => {
@@ -58,7 +60,9 @@ export default {
           // console.log('success')
           this.$https.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
             .then(result => {
-              // console.log(result.data)
+              console.log(result.data)
+              // 本地存储用户信息
+              store.setUser(result.data.data)
               this.$router.push('/')
             }).catch(() => {
               this.$message({

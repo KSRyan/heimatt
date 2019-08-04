@@ -1,6 +1,6 @@
 <template>
   <div style="text-align: center;">
-    <img src="../../assets/images/welcome.jpg" alt="">
+    <img src="../../assets/images/black.jpg" alt="">
   </div>
 </template>
 
