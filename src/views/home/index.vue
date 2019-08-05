@@ -52,12 +52,12 @@
       <!-- 下拉菜单 -->
       <el-dropdown class="my-drop">
         <span class="el-dropdown-link">
-          <img src="../../assets/images/avatar.jpg"/>
-          24K纯帅<i class="el-icon-arrow-down el-icon--right"></i>
+          <img :src="photo"/>
+          {{name}}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item icon="el-icon-setting">个人设置</el-dropdown-item>
-          <el-dropdown-item icon="el-icon-unlock">退出登录</el-dropdown-item>
+          <el-dropdown-item icon="el-icon-setting" @click.native="setting">个人设置</el-dropdown-item>
+          <el-dropdown-item icon="el-icon-unlock" @click.native="exit">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-header>
@@ -69,15 +69,30 @@
 </template>
 
 <script>
+import store from '@/store'
 export default {
   data () {
     return {
-      isColleges: false
+      isColleges: false,
+      name: '',
+      photo: ''
     }
+  },
+  created () {
+    const user = store.getUser()
+    this.name = user.name
+    this.photo = user.photo
   },
   methods: {
     toggleMenu () {
       this.isColleges = !this.isColleges
+    },
+    setting () {
+      this.$router.push('/setting')
+    },
+    exit () {
+      store.clearUser()
+      this.$router.push('/login')
     }
   }
 }

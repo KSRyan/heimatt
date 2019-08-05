@@ -5,6 +5,7 @@ import HomeCom from '@/views/home'
 import Welcome from '@/views/welcome'
 import Content from '@/views/content'
 import Notfind from '@/views/notfind'
+import persnalSet from '@/views/set'
 import store from '@/store'
 Vue.use(VueRouter)
 
@@ -18,7 +19,8 @@ const router = new VueRouter({
       component: HomeCom,
       children: [
         { path: '/', name: 'welcome', component: Welcome },
-        { path: '/content', name: 'content', component: Content }
+        { path: '/content', name: 'content', component: Content },
+        { path: '/setting', name: 'setting', component: persnalSet }
       ]
     },
     { path: '*', name: '404', component: Notfind }
