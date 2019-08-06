@@ -74,7 +74,7 @@ export default {
           } catch (e) {
             this.$message({
               showClose: true,
-              message: '手机号或验证码错误',
+              message: '手机号或验证码输入错误',
               type: 'error'
             })
           }
@@ -82,6 +82,7 @@ export default {
       })
     }
   }
+
 }
 </script>
 
