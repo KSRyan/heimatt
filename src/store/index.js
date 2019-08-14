@@ -7,7 +7,10 @@ const KEY = 'user'
 // 2
 export default {
   setUser (user) {
-    window.sessionStorage.setItem(KEY, JSON.stringify(user))
+    // 获取本地的存储的对象，把传入的对象，合并覆盖到当前存储对象中。
+    const localUser = this.getUser()
+    const newUser = { ...localUser, ...user }
+    window.sessionStorage.setItem(KEY, JSON.stringify(newUser))
   },
   getUser () {
     return JSON.parse(window.sessionStorage.getItem(KEY) || '{}')

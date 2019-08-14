@@ -1,10 +1,17 @@
 // 对axios进行配置  然后将配置好的axios导出
 import axios from 'axios'
 import store from '@/store'
-
+import JSONBIG from 'json-bigint'
 // 进行配置
 // 基准路径
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0/'
+axios.defaults.transformResponse = [(data) => {
+  try {
+    return JSONBIG.parse(data)
+  } catch (e) {
+    return data /* data: null */
+  }
+}]
 // 请求头字段(错误写法，只会在main.js渲染时执行一次，不推荐)
 // axios.defaults.headers = {
 //   Authorization: `Bearer ${store.getUser().token}`

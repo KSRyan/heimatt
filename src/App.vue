@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- 指定loginCom组件 路由的出口 -->
+    <!-- 指定一级路由的出口 -->
     <router-view></router-view>
   </div>
 </template>

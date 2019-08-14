@@ -26,7 +26,7 @@
           <i class="el-icon-folder-opened"></i>
           <span slot="title">素材管理</span>
         </el-menu-item>
-        <el-menu-item index="/essay">
+        <el-menu-item index="/publish">
           <i class="el-icon-edit"></i>
           <span slot="title">发布文章</span>
         </el-menu-item>
@@ -62,6 +62,7 @@
       </el-dropdown>
     </el-header>
     <el-main>
+      <!-- 二级路由的出口 -->
       <router-view></router-view>
     </el-main>
    </el-container>
@@ -70,6 +71,7 @@
 
 <script>
 import store from '@/store'
+import eventBus from '@/components/eventBus.js'
 export default {
   data () {
     return {
@@ -79,6 +81,12 @@ export default {
     }
   },
   created () {
+    eventBus.$on('updateName', (data) => {
+      this.name = data
+    })
+    eventBus.$on('updatePhoto', (data) => {
+      this.photo = data
+    })
     const user = store.getUser()
     this.name = user.name
     this.photo = user.photo
@@ -88,7 +96,7 @@ export default {
       this.isColleges = !this.isColleges
     },
     setting () {
-      this.$router.push('/setting')
+      this.$router.push('/personal')
     },
     exit () {
       store.clearUser()
